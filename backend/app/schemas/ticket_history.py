@@ -14,6 +14,14 @@ class TicketHistoryCreate(TicketHistoryBase):
     user_id: int
 
 
+class TicketHistoryUpdate(BaseModel):
+    ticket_id: Optional[int] = None
+    user_id: Optional[int] = None
+    previous_state: Optional[str] = None
+    new_state: Optional[str] = None
+    comments: Optional[str] = None
+
+
 class TicketHistoryRead(TicketHistoryBase):
     id: int
     ticket_id: int
@@ -22,4 +30,4 @@ class TicketHistoryRead(TicketHistoryBase):
     update_date: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

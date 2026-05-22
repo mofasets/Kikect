@@ -8,6 +8,8 @@ if TYPE_CHECKING:
 
 
 class TicketHistory(SQLModel, table=True):
+    __tablename__ = "ticket_history"
+    
     id: Optional[int] = Field(default=None, primary_key=True)
     ticket_id: int = Field(foreign_key="ticket.id")
     user_id: int = Field(foreign_key="user.id")

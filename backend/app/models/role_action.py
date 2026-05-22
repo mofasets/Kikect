@@ -8,6 +8,8 @@ if TYPE_CHECKING:
 
 
 class RoleAction(SQLModel, table=True):
+    __tablename__ = "role_action"
+
     id: Optional[int] = Field(default=None, primary_key=True)
     role_id: int = Field(foreign_key="role.id")
     action_id: int = Field(foreign_key="action.id")

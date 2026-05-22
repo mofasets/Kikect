@@ -15,6 +15,15 @@ class TicketCreate(TicketBase):
     technical_id: Optional[int] = None
 
 
+class TicketUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    image_url: Optional[str] = None
+    state: Optional[TicketState] = None
+    requester_id: Optional[int] = None
+    technical_id: Optional[int] = None
+
+
 class TicketRead(TicketBase):
     id: int
     state: TicketState
@@ -24,4 +33,4 @@ class TicketRead(TicketBase):
     update_date: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

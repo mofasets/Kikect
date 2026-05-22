@@ -29,6 +29,14 @@ class Ticket(SQLModel, table=True):
     create_date: datetime = Field(default_factory=datetime.now)
     update_date: datetime = Field(default_factory=datetime.now)
 
-    requester: Optional["User"] = Relationship(back_populates="requested_tickets")
-    technical: Optional["User"] = Relationship(back_populates="technical_tickets")
+    requester: Optional["User"] = Relationship(
+        back_populates="requested_tickets",
+        sa_relationship_kwargs={"foreign_keys": "Ticket.requester_id"}
+    )
+
+    technical: Optional["User"] = Relationship(
+        back_populates="technical_tickets",
+        sa_relationship_kwargs={"foreign_keys": "Ticket.technical_id"}
+    )
+
     histories: List["TicketHistory"] = Relationship(back_populates="ticket")

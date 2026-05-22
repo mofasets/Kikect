@@ -10,8 +10,18 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    password: str
+    hashed_password: str
     role_id: Optional[int] = None
+
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    identification_id: Optional[str] = None
+    hashed_password: Optional[str] = None
+    is_active: Optional[bool] = None
+    role_id: Optional[int] = None
+    google_id: Optional[str] = None
 
 
 class UserRead(UserBase):
@@ -23,4 +33,4 @@ class UserRead(UserBase):
     update_date: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
